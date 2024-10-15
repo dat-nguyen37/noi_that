@@ -1,0 +1,5 @@
+/api/.vs
+/api/api/appsettings.json
+/api/api/bin/Debug/net6.0/appsettings.json
+/api/api/bin/Release/net6.0/appsettings.json
+/api/api/obj/Release/net6.0/PubTmp/Out/appsettings.json
