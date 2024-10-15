@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "./store/store";
 import { jwtDecode } from "jwt-decode";
 
-axios.defaults.baseURL="https://localhost:7224/"
+axios.defaults.baseURL="http://192.168.1.17:8888/"
 
 axios.defaults.withCredentials = true;
 
