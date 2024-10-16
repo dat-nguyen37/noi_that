@@ -5,8 +5,8 @@
             <VueIcon type="mdi" :path="mdiChevronRight"/>
             <p class="text-sm">Khách hàng</p>
         </div>
-        <div class="flex bg-white shadow-lg mt-1 p-4">
-            <table class="w-full text-xs">
+        <div class="flex flex-col bg-white shadow-lg mt-1 p-4">
+            <table class="w-full text-xs md:text-sm">
                 <thead class="border">
                     <tr class="bg-gray-400 text-center">
                         <td scope="col" class="border">Id</td>
