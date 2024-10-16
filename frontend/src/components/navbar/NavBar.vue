@@ -72,7 +72,7 @@
                             <li @click="logout" class="block border-b p-2 cursor-pointer hover:bg-gray-500 hover:text-white">Logout</li>
                         </ul>
                     </div>
-                    <div v-else id="login" :class="login ?'flex':'hidden'" class="absolute top-14 text-sm w-screen -right-[100px] md:w-[23rem] md:-right-20 z-20 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
+                    <div v-else id="login" :class="login ?'flex':'hidden'" class="absolute top-14 text-sm w-screen -right-[140px] md:w-[23rem] md:-right-20 z-20 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
                         <div class="overflow-hidden w-full">
                             <div class="flex w-[300%] transform transition-transform duration-500 ease-out" 
                                 :style="{ transform: recoverPanel === 'login' ? 'translateX(-33.33%)' : 
