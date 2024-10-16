@@ -6,7 +6,7 @@
             <p class="text-sm">Khách hàng</p>
         </div>
         <div class="flex flex-col bg-white shadow-lg mt-1 p-4">
-            <table class="w-full text-xs md:text-sm table-fixed">
+            <table class="w-full text-xs md:text-sm">
                 <thead class="border">
                     <tr class="bg-gray-400 text-center">
                         <td scope="col" class="border">Id</td>
