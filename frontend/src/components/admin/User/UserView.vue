@@ -18,7 +18,7 @@
                 </thead>
                 <tbody>
                     <tr v-for="item in data" :key="item.id" class="">
-                        <td scope="col" class="border text-center hover:text-blue-500 cursor-pointer">#{{ item.id }}</td>
+                        <td scope="col" class="border p-2 text-center hover:text-blue-500 cursor-pointer">#{{ item.id }}</td>
                         <td scope="col" class="border text-center">{{ item.username }}</td>
                         <td scope="col" class="border text-center">{{ item.phone }}</td>
                         <td scope="col" class="border text-center">{{ item.email }}</td>
