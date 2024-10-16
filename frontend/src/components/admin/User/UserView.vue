@@ -23,7 +23,7 @@
                         <td scope="col" class="border text-center hidden lg:table-cell">{{ item.phone }}</td>
                         <td scope="col" class="border text-center">{{ item.email }}</td>
                         <td class="flex gap-2 justify-center items-center border">
-                            <div class="text-red-500 h-full"><VueIcon type="mdi" :path="mdiCloseCircle"/></div>
+                            <div class="text-red-500 p-1"><VueIcon type="mdi" :path="mdiCloseCircle"/></div>
                         </td>
                     </tr>
                 </tbody>
