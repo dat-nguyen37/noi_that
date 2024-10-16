@@ -19,9 +19,9 @@
                 <tbody>
                     <tr v-for="item in data" :key="item.id" class="">
                         <td scope="col" class="border p-2 text-center hover:text-blue-500 cursor-pointer">#{{ item.id }}</td>
-                        <td scope="col" class="border text-center">{{ item.username }}</td>
-                        <td scope="col" class="border text-center">{{ item.phone }}</td>
-                        <td scope="col" class="border text-center">{{ item.email }}</td>
+                        <td scope="col" class="border text-center break-words">{{ item.username }}</td>
+                        <td scope="col" class="border text-center break-words">{{ item.phone }}</td>
+                        <td scope="col" class="border text-center break-words">{{ item.email }}</td>
                         <td class="flex gap-2 justify-center items-center border">
                             <div class="text-red-500"><VueIcon type="mdi" :path="mdiCloseCircle"/></div>
                         </td>
