@@ -1,5 +1,5 @@
 <template>
-    <div class=" mt-2 relative">
+    <div class=" mt-2">
         <div class="flex items-center gap-2 p-2">
             <router-link :to="{name:'adminHome'}">Home:</router-link>
             <VueIcon type="mdi" :path="mdiChevronRight"/>
@@ -9,11 +9,11 @@
             <table class="w-full text-xs">
                 <thead class="border">
                     <tr class="bg-gray-400 text-center">
-                        <td scope="col" class="p-2 border">Id</td>
-                        <td scope="col" class="p-2 border">Usname</td>
-                        <td scope="col" class="p-2 border">Phone</td>
-                        <td scope="col" class="p-2 border">Email</td>
-                        <td scope="col" class="p-2 border">Hành động</td>
+                        <td scope="col" class="border">Id</td>
+                        <td scope="col" class="border">Usname</td>
+                        <td scope="col" class="border">Phone</td>
+                        <td scope="col" class="border">Email</td>
+                        <td scope="col" class="border">Hành động</td>
                     </tr>
                 </thead>
                 <tbody>
