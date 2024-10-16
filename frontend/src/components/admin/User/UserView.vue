@@ -10,8 +10,8 @@
                 <thead class="border">
                     <tr class="bg-gray-400 text-center">
                         <td scope="col" class="border">Id</td>
-                        <td scope="col" class="border">Usname</td>
-                        <td scope="col" class="border">Phone</td>
+                        <td scope="col" class="border hidden lg:table-cell">Usname</td>
+                        <td scope="col" class="border hidden lg:table-cell">Phone</td>
                         <td scope="col" class="border">Email</td>
                         <td scope="col" class="border">Hành động</td>
                     </tr>
@@ -19,11 +19,11 @@
                 <tbody>
                     <tr v-for="item in data" :key="item.id" class="">
                         <td scope="col" class="border p-2 text-center hover:text-blue-500 cursor-pointer">#{{ item.id }}</td>
-                        <td scope="col" class="border text-center break-words">{{ item.username }}</td>
-                        <td scope="col" class="border text-center break-words">{{ item.phone }}</td>
-                        <td scope="col" class="border text-center break-words">{{ item.email }}</td>
+                        <td scope="col" class="border text-center hidden lg:table-cell">{{ item.username }}</td>
+                        <td scope="col" class="border text-center hidden lg:table-cell">{{ item.phone }}</td>
+                        <td scope="col" class="border text-center">{{ item.email }}</td>
                         <td class="flex gap-2 justify-center items-center border">
-                            <div class="text-red-500"><VueIcon type="mdi" :path="mdiCloseCircle"/></div>
+                            <div class="text-red-500 h-full"><VueIcon type="mdi" :path="mdiCloseCircle"/></div>
                         </td>
                     </tr>
                 </tbody>
