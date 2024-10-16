@@ -73,7 +73,7 @@
                         </ul>
                     </div>
                     <div v-else id="login" :class="login ?'flex':'hidden'" @click="openLogin" class="fixed flex justify-center items-center z-20 inset-0 bg-black bg-opacity-50 h-[100vh] w-[100vw]">
-                        <div class="overflow-hidden w-full">
+                        <div class="overflow-hidden bg-white w-full sm:w-[23rem]">
                             <div class="flex w-[300%] transform transition-transform duration-500 ease-out" 
                                 :style="{ transform: recoverPanel === 'login' ? 'translateX(-33.33%)' : 
                                 recoverPanel === 'register' ? 'translateX(0%)' : 
