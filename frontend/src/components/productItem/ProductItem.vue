@@ -8,7 +8,7 @@
         <div class="px-2 dark:bg-black dark:text-white">
             <p class="uppercase text-[12px] sm:text-sm font-semibold">{{item.name}}</p>
             <p class="text-red-500 text-[12px] sm:text-base">{{item.discountedPrice ? item.discountedPrice : item.price | numeral}}<u>đ</u>&nbsp;<s v-if="item.discountedPrice" class="text-gray-400">{{item.price | numeral}}<u>đ</u></s></p>
-            <div class="flex justify-between">
+            <div class="flex flex-col sm:flex-row justify-between">
                 <div class="flex items-center py-1">
                     <star-rating v-model="rate"
                             :star-size="15" 

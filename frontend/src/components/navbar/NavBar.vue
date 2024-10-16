@@ -20,14 +20,14 @@
                             </ul>
                         </div>
                     </li>
-                    <li class="flex items-center p-2 hover:bg-gray-200 hover:text-red-500"><a href="" class="flex">Dịch Vụ </a>
+                    <li class="flex items-center p-2 hover:bg-gray-200 hover:text-red-500"><router-link :to="{name:'about'}" href="" class="flex">Dịch Vụ </router-link>
                     </li>
-                    <li class="flex items-center p-2 hover:bg-gray-200 hover:text-red-500"><a href="/pages/about" class="flex">Về chúng tôi </a></li>
-                    <li class="flex items-center p-2 hover:bg-gray-200 hover:text-red-500"><a href="/pages/contact" class="flex">Liên hệ </a></li>
+                    <li class="flex items-center p-2 hover:bg-gray-200 hover:text-red-500"><router-link :to="{name:'about'}" class="flex">Về chúng tôi </router-link></li>
+                    <li class="flex items-center p-2 hover:bg-gray-200 hover:text-red-500"><router-link :to="{name:'contact'}" class="flex">Liên hệ </router-link></li>
                 </ul>
             </div>
             <div class="col-span-4 justify-center">
-                <a href="/"><img src="/assets/image/logo.png" alt="" class=" w-40 h-8"></a>
+                <router-link :to="{name:'home'}"><img src="/assets/image/logo.png" alt="" class=" w-40 h-8"></router-link>
             </div>
             <div class="w-80 hidden md:flex">
                 <div class="flex items-center relative dark:bg-black dark:text-white border-2 p-1 border-gray-100 w-80 h-10">
@@ -67,12 +67,12 @@
                     </div>
                     <div v-if="$store.state.user" :class="login ?'flex':'hidden'" class="absolute top-14 text-sm z-20 w-24 border bg-white dark:bg-black dark:text-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
                         <ul class="w-full">
-                            <li v-if="$store.state.user.role==='Admin'" class=""><a href="/admin" class="block border-b p-2 hover:bg-gray-500 hover:text-white">Admin</a></li>
-                            <li class=""><a href="/profile" class="block border-b p-2 hover:bg-gray-500 hover:text-white">Profile</a></li>
+                            <li v-if="$store.state.user.role==='Admin'" class=""><router-link :to="{name:'adminHome'}" class="block border-b p-2 hover:bg-gray-500 hover:text-white">Admin</router-link></li>
+                            <li class=""><router-link :to="{name:'account'}" class="block border-b p-2 hover:bg-gray-500 hover:text-white">Profile</router-link></li>
                             <li @click="logout" class="block border-b p-2 cursor-pointer hover:bg-gray-500 hover:text-white">Logout</li>
                         </ul>
                     </div>
-                    <div v-else id="login" :class="login ?'flex':'hidden'" class="absolute top-14 text-sm w-screen -right-[100px] md:w-[23rem] md:-right-20 z-20 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
+                    <div v-else id="login" :class="login ?'flex':'hidden'" class="absolute top-14 text-sm w-screen -right-[160px] md:w-[23rem] md:-right-20 z-20 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
                         <div class="overflow-hidden w-full">
                             <div class="flex w-[300%] transform transition-transform duration-500 ease-out" 
                                 :style="{ transform: recoverPanel === 'login' ? 'translateX(-33.33%)' : 
@@ -127,8 +127,8 @@
                                     <p class="text-red-500 font-bold">{{ totalAmount | numeral}} <u>đ</u></p>
                                 </div>
                                 <div class="flex gap-2 justify-between text-white text-sm uppercase">
-                                    <a href="/cart" class="w-1/2 bg-gray-600 py-2">{{ $t('cart.buttons.show_cart') }}</a>
-                                    <a href="/checkout" class="w-1/2 bg-blue-800 py-2">{{ $t('cart.buttons.payment') }}</a>
+                                    <router-link :to="{name:'cart'}" class="w-1/2 bg-gray-600 py-2">{{ $t('cart.buttons.show_cart') }}</router-link>
+                                    <router-link :to="{name:'checkout'}" class="w-1/2 bg-blue-800 py-2">{{ $t('cart.buttons.payment') }}</router-link>
                                 </div>
                             </div>
                         </div>
@@ -172,10 +172,10 @@
                         </li>
                     </ul>
                 </li>
-                <li class="flex items-center"><a href="/pages/about">Dịch Vụ </a>
+                <li class="flex items-center"><router-link :to="{name:'about'}">Dịch Vụ </router-link>
                 </li>
-                <li class="flex items-center"><a href="/pages/about">Về chúng tôi </a></li>
-                <li class="flex items-center"><a href="/pages/contact">Liên hệ </a></li>
+                <li class="flex items-center"><router-link :to="{name:'about'}">Về chúng tôi </router-link></li>
+                <li class="flex items-center"><router-link :to="{name:'contact'}">Liên hệ </router-link></li>
             </ul>
         </div>
     </nav>

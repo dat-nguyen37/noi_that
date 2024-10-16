@@ -5,7 +5,7 @@
             <VueIcon type="mdi" :path="mdiChevronRight"/>
             <p class="text-sm">Khách hàng</p>
         </div>
-        <div class="bg-white shadow-lg mt-1">
+        <div class="flex bg-white shadow-lg mt-1 p-4">
             <table class="w-full text-xs">
                 <thead class="border">
                     <tr class="bg-gray-400 text-center">
