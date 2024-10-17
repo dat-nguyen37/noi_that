@@ -72,10 +72,10 @@
                             <li @click="logout" class="block border-b p-2 cursor-pointer hover:bg-gray-500 hover:text-white">Logout</li>
                         </ul>
                     </div>
-                    <div v-else id="login" :class="login ?'flex':'hidden'"  class="fixed">
+                    <div v-else id="login" :class="login ?'flex':'hidden'"  class="fixed flex justify-center items-center z-20 inset-0 bg-black bg-opacity-50 h-[100vh] w-[100vw]">
                         <div class="overflow-hidden bg-white w-full sm:w-[23rem] relative z-50">
-                            <div class="absolute top-0 right-0 p-2 cursor-pointer">
-                                <VueIcon type="mdi" :path="mdiChevronDown " size="30"/>
+                            <div @click="openLogin" class="absolute top-0 right-0 p-2 hover:cursor-pointer">
+                                <VueIcon type="mdi" :path="mdiChevronDown " size="30" class="text-black dark:text-white"/>
                             </div>
                             <div class="flex w-[300%] transform transition-transform duration-500 ease-out" 
                                 :style="{ transform: recoverPanel === 'login' ? 'translateX(-33.33%)' : 
