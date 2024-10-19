@@ -48,7 +48,7 @@
                     <a href="/product/all" class="text-red-500">Xem tất cả</a>
                 </div>
                 <div class="grid grid-cols-2 lg:grid-cols-4 gap-2">
-                    <ProductItem v-for="item in productDiscount" :key="item.productId" :item="item"/>
+                    <ProductItem v-for="item in productSell" :key="item.productId" :item="item"/>
                 </div> 
             </div>
             <!-- blog -->

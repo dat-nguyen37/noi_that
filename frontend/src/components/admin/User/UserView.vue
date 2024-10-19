@@ -23,7 +23,7 @@
                         <td scope="col" class="border text-center hidden lg:table-cell">{{ item.phone }}</td>
                         <td scope="col" class="border text-center">{{ item.email }}</td>
                         <td class="flex gap-2 justify-center items-center border">
-                            <div class="text-red-500 p-1"><VueIcon type="mdi" :path="mdiCloseCircle"/></div>
+                            <div @click="Delete(item.id)" class="text-red-500 p-1"><VueIcon type="mdi" :path="mdiCloseCircle"/></div>
                         </td>
                     </tr>
                 </tbody>
@@ -64,6 +64,21 @@ export default {
                 console.log(err)
             }
         },
+        async Delete(id){
+            try {
+                await axios.delete(`/User/delete/${id}`)
+                this.$toast.success(`Xóa thành công`, {
+                    position: "top-right",
+                    timeout: 5000
+                });
+            } catch (err) {
+                console.log(err)
+                this.$toast.error(`Xóa thất bại`, {
+                    position: "top-right",
+                    timeout: 5000
+                });
+            }
+        }
     },
 }
 </script>
