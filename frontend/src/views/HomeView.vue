@@ -193,6 +193,7 @@ export default {
         this.getProductNew()
         this.getProductDiscount()
         this.getCommentView()
+        this.productSell()
     },
     beforeDestroy() {
         window.removeEventListener('resize', this.handleResize); 
