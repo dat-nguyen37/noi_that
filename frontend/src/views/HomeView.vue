@@ -172,7 +172,7 @@ export default {
         },
         async getProductSell(){
             try {
-                const res=await axios.get("/Product/getSell")
+                const res=await axios.get("/Product/sell")
                 this.productSell=res.data
             } catch (err) {
                 console.log(err)
