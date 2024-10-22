@@ -50,7 +50,7 @@
                             <i><u><b>Lưu ý: </b></u>Sản phẩm hiện chỉ được cung cấp tại khu vực Thành phố Hồ Chí Minh.</i>
                             <div class="w-full bg-blue-800 text-center text-xl uppercase py-2 text-white font-bold">Hãy để MOho tư vấn cho bạn trước khi đặt hàng</div>
                             <p class="">Nhắn tin Fanpage: <a href=""><b class="text-white bg-blue-800 p-2">Nội thất moho</b></a></p>
-                            <p class="">Gọi ngay Hotline:  <b class=" text-blue-800 p-2">0966544325(Zalo)</b></p>
+                            <p class="">Gọi ngay Hotline:  <b class=" text-blue-800 p-2">(Zalo)</b></p>
                             <div class="flex border w-32 h-8 font-bold text-xl text-center items-center">
                                 <div @click="quantity>0 && quantity--" class="bg-gray-100 w-8 cursor-pointer dark:bg-black dark:text-white">-</div>
                                 <input type="text" v-model="quantity" class="w-16 text-center outline-none dark:bg-black dark:text-white" value="1">
