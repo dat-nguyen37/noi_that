@@ -22,20 +22,20 @@
                 <div class="flex gap-2 text-gray-600 dark:text-white">
                     <VueIcon type="mdi" :path="mdiMapMarker" width="100"/>
                     <div class="">
-                        <p>Showroom: 162 HT17, P. Hiệp Thành, Q. 12, TP. HCM (Nằm trong khuôn viên công ty SAVIMEX phía sau bến xe buýt Hiệp Thành) | Hotline: 0971 141 140</p>
-                        <p>Experience Store 1: S05.03-S18 phân khu The Rainbow | Vinhomes Grand Park, TP. Thủ Đức | Hotline: 0931 880 424</p>
+                        <p>Showroom: 162 HT17, P. Hiệp Thành, Q. 12, TP. HCM (Nằm trong khuôn viên công ty SAVIMEX phía sau bến xe buýt Hiệp Thành) | Hotline: 0999999999</p>
+                        <p>Experience Store 1: S05.03-S18 phân khu The Rainbow | Vinhomes Grand Park, TP. Thủ Đức | Hotline: 0999999999</p>
                     </div>
                 </div>
                 <div class="flex gap-2 text-gray-600 dark:text-white">
                     <VueIcon type="mdi" :path="mdiPhoneClassic"/>
                     <div>
-                        <p>097 114 1140 (Hotline/Zalo)</p>
-                        <p>0902 415 359 (Đội Giao Hàng)</p>
+                        <p>0999999999 (Hotline/Zalo)</p>
+                        <p>0999999999 (Đội Giao Hàng)</p>
                     </div>
                 </div>
                 <div class="flex gap-2 text-gray-600 dark:text-white">
                     <VueIcon type="mdi" :path="mdiEmail"/>
-                    <p>cskh@moho.com.vn</p>
+                    <p>cskh@gmail.com</p>
                 </div>
             </div>
             <div class="col-span-1 flex flex-col gap-2">
