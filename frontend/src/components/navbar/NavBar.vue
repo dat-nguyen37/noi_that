@@ -41,7 +41,7 @@
                             <div v-for="i in listSearch" :key="i.productId" class="p-2 flex border-b">
                                 <div class=""><img :src="i.image" alt="" class="w-14 h-10"></div>
                                 <div class="flex flex-col mx-3">
-                                    <router-link class="text-sm" :to="{name:'productdetail',params:{id:i.productId}}">{{ i.name }}</router-link>
+                                    <router-link class="text-sm" :to="{name:'productdetail',query:{masp:i.productId}}">{{ i.name }}</router-link>
                                     <p>{{i.discountedPrice ?? i.price | numeral}}₫ <s v-if="i.discountedPrice" class="">{{i.discountedPrice | numeral}}₫</s></p>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                         <div v-for="i in listSearch" :key="i.productId" class="p-2 flex border-b">
                             <div class=""><img :src="i.image" alt="" class="w-14 h-10"></div>
                             <div class="flex flex-col mx-3">
-                                <router-link class="text-sm" :to="{name:'productdetail',params:{id:i.productId}}">{{ i.name }}</router-link>
+                                <router-link class="text-sm" :to="{name:'productdetail',query:{masp:i.productId}}">{{ i.name }}</router-link>
                                 <p>{{i.discountedPrice ?? i.price | numeral}}₫ <s v-if="i.discountedPrice" class="">{{i.discountedPrice | numeral}}₫</s></p>
                             </div>
                         </div>
