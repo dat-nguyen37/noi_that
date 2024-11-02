@@ -97,7 +97,7 @@
                                     <option value="5">5sao</option>
                                 </select>
                             </div>
-                            <textarea v-model="commentText" class="border outline-none p-2" placeholder="Viết gì đó ..."/>
+                            <textarea v-model="commentText" class="border outline-none p-2 dark:bg-black dark:text-white" placeholder="Viết gì đó ..."/>
                             <div class="flex bottom-2 overflow-x-auto justify-between">
                                 <div class=" flex flex-wrap">
                                     <label v-if="!commentImage" for="file" class="w-10 h-10 md:w-20 md:h-20 border-2 flex justify-center items-center hover:cursor-pointer"><VueIcon type="mdi" :path="mdiCamera" class=""/></label>
