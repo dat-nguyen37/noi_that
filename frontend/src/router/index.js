@@ -170,10 +170,7 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
   }
   if (to.meta.requiresAdmin && !store.getters.isAdmin) {
-    this.$toast.error(`Bạn không thể truy cập trang này`, {
-      position: "top-right",
-      timeout: 5000
-    });
+    alert("Bạn không thể truy cập")
     next({ path: '/' });
   }
   next();
