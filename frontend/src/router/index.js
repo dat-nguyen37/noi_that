@@ -14,6 +14,7 @@ import ProfileView from '@/views/ProfileView.vue'
 import SearchView from '@/views/SearchView.vue'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store/store';
 
 
 Vue.use(VueRouter)
@@ -168,7 +169,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title;
   }
-  if (to.meta.requiresAdmin && !$store.getters.isAdmin) {
+  if (to.meta.requiresAdmin && !store.getters.isAdmin) {
     this.$toast.error(`Bạn không thể truy cập trang này`, {
       position: "top-right",
       timeout: 5000
