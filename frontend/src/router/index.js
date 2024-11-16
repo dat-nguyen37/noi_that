@@ -168,14 +168,12 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title;
   }
-  if (to.meta.requiresAdmin && !store.getters.isAdmin) {
+  if (to.meta.requiresAdmin && !this.store.getters.isAdmin) {
     this.$toast.error(`Bạn không thể truy cập trang này`, {
       position: "top-right",
       timeout: 5000
-  });
+    });
     next({ path: '/' });
-  } else {
-    next();
   }
   next();
 });
