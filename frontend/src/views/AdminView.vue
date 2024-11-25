@@ -53,13 +53,17 @@
                         <div class="flex items-center gap-2 px-2 cursor-pointer relative group">
                         <VueIcon type="mdi" :path="mdiBell"/>
                         <div class="absolute flex justify-center items-center top-0 right-2  w-4 h-4 bg-yellow-500 rounded-full"><span>{{ notifications.length }}</span></div>
-                        <div v-if="notifications.length>0" class="absolute hidden group-hover:block top-10 right-5 text-sm z-20 w-40 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
+                        <div v-if="notifications.length>0" class="absolute hidden group-hover:block top-6 right-4 text-sm z-20 w-40 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
+                            <div class="flex border-b p-2 items-center gap-2" @click="handleCheck">
+                                <VueIcon type="mdi" :path="mdiCheck" size="20"/>
+                                <span>Đánh dấu đã đọc</span>
+                            </div>
                             <ul class="">
-                                <li v-for="(item,index) in notifications" :key="index" class="border-b p-2"><a href="/">{{item.message}}</a></li>
+                                <li v-for="(item,index) in notifications" :key="index" class="border-b p-2"><a href="/" class="text-xs">{{item.message}}</a></li>
                             </ul>
                         </div>
                         <div v-else class="absolute hidden group-hover:block top-10 right-5 text-sm z-20 p-2 min-h-10 w-40 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
-                            <p>Không có thông báo nào.</p>
+                            <p>Không có thông báo mới nào.</p>
                         </div>
                     </div> 
                     <div class="flex items-center gap-2 px-2 cursor-pointer relative group">
@@ -83,8 +87,9 @@
 </template>
 
 <script>
-import {  mdiChevronDown,mdiChevronLeft,mdiViewHeadline,mdiBell,mdiLogout,mdiShoppingOutline,mdiTicketPercentOutline,mdiViewDashboard,mdiFinance,mdiImageArea, mdiAccount,mdiPackageVariantClosed,mdiLinkVariant  } from '@mdi/js';
+import {  mdiChevronDown,mdiChevronLeft,mdiViewHeadline,mdiBell,mdiCheck,mdiLogout,mdiShoppingOutline,mdiTicketPercentOutline,mdiViewDashboard,mdiFinance,mdiImageArea, mdiAccount,mdiPackageVariantClosed,mdiLinkVariant  } from '@mdi/js';
 import * as signalR from '@microsoft/signalr';
+import axios from 'axios';
 export default {
     name:'AdminView',
     data(){
@@ -95,13 +100,29 @@ export default {
             productCount:0,
             totalCount:0,
             orderCount:0,
-            mdiViewHeadline,mdiChevronDown,mdiChevronLeft,mdiLogout,mdiShoppingOutline,mdiBell ,mdiTicketPercentOutline,mdiImageArea,mdiViewDashboard,mdiFinance,mdiAccount,mdiPackageVariantClosed,mdiLinkVariant
+            mdiViewHeadline,mdiChevronDown,mdiChevronLeft,mdiCheck,mdiLogout,mdiShoppingOutline,mdiBell ,mdiTicketPercentOutline,mdiImageArea,mdiViewDashboard,mdiFinance,mdiAccount,mdiPackageVariantClosed,mdiLinkVariant
         }
     },
     methods:{
         toggleSidebar(){
             this.isSidebarVisible=!this.isSidebarVisible
         },
+        async handleCheck(){
+            try {
+                await axios.get('/Notification/MarkAllAsRead')
+                this.getNotification()
+            } catch (err) {
+                console.log(err)
+            }
+        },
+        async getNotification(){
+            try {
+                const res=await axios.get('/Notification/getNotification')
+                this.notifications=res.data
+            } catch (err) {
+                console.log(err)
+            }
+        }
         
     },
     mounted(){
@@ -114,6 +135,7 @@ export default {
     });
 
     connection.start().catch(err => console.error(err));
+    this.getNotification()
     }
 }
 </script>

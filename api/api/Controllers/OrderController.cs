@@ -73,7 +73,7 @@ namespace api.Controllers
             _context.carts.RemoveRange(cartItems);
             await _context.SaveChangesAsync();
             await _notificationService.SendNotificationAsync("Có đơn hàng mới được tạo lúc " + DateTime.Now.ToString("HH:mm dd/MM"));
-
+            
 
             return Ok(new { orderId = order.OrderId, message = "Đặt hàng thành công!" });
         }
