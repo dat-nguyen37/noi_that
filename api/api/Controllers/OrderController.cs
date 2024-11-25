@@ -1,9 +1,12 @@
 ﻿using api.Data;
 using api.Dto;
 using api.Models;
+using api.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
+using System.Linq;
 
 namespace api.Controllers
 {
@@ -12,9 +15,11 @@ namespace api.Controllers
     public class OrderController : Controller
     {
         private readonly AppDbContext _context;
-        public OrderController(AppDbContext context)
+        private readonly INotificationService _notificationService;
+        public OrderController(AppDbContext context, INotificationService notificationService)
         {
             _context = context;
+            _notificationService = notificationService;
         }
         [Authorize]
         [HttpPost("create")]
@@ -67,6 +72,8 @@ namespace api.Controllers
             var cartItems = await _context.carts.Where(ci => ci.UserId == userId).ToListAsync();
             _context.carts.RemoveRange(cartItems);
             await _context.SaveChangesAsync();
+            await _notificationService.SendNotificationAsync("Có đơn hàng mới được tạo lúc " + DateTime.Now.ToString("HH:mm dd/MM"));
+
 
             return Ok(new { orderId = order.OrderId, message = "Đặt hàng thành công!" });
         }
@@ -134,15 +141,15 @@ namespace api.Controllers
         public async Task<IActionResult> Statistical(int year)
         {
             var monthlyStatistics = await _context.orders
-            .Where(o => o.PaymentStatus== "Đã thanh toán" && o.CreateDate.Year == year) 
+            .Where(o => o.PaymentStatus == "Đã thanh toán" && o.CreateDate.Year == year)
 
-            .GroupBy(o => o.CreateDate.Month)  
+            .GroupBy(o => o.CreateDate.Month)
             .Select(g => new
             {
                 Month = g.Key,
-                TotalAmount = g.Sum(o => o.TotalAmount)  
+                TotalAmount = g.Sum(o => o.TotalAmount)
             })
-            .OrderBy(g => g.Month)  
+            .OrderBy(g => g.Month)
             .ToListAsync();
             var yearlyStatistics = await _context.orders
                 .Where(o => o.PaymentStatus == "Đã thanh toán")
@@ -163,6 +170,63 @@ namespace api.Controllers
                 TotalAmountAllYears = totalAmountAllYears
             });
         }
+        [HttpGet("Export")]
+        public async Task<IActionResult> Export(int year)
+        {
+            var monthlyStatistics = await _context.orders
+            .Where(o => o.PaymentStatus == "Đã thanh toán" && o.CreateDate.Year == year)
 
+            .GroupBy(o => o.CreateDate.Month)
+            .Select(g => new
+            {
+                Month = g.Key,
+                TotalAmount = g.Sum(o => o.TotalAmount)
+            })
+            .OrderBy(g => g.Month)
+            .ToListAsync();
+            var totalAmountForYear = await _context.orders
+                    .Where(o => o.PaymentStatus == "Đã thanh toán" && o.CreateDate.Year == year)
+                    .SumAsync(o => o.TotalAmount);
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Doanhthu");
+
+                worksheet.Cells[1, 1].Value = string.Format("Doanh thu năm {0} theo tháng", year);
+                worksheet.Cells[1, 1].Style.Font.Bold = true;
+                worksheet.Cells[1, 1].Style.Font.Size = 14;
+                worksheet.Cells[1, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                worksheet.Cells[1, 1, 1, 4].Merge = true;
+                worksheet.Cells[2, 1].Value = "Thời gian tạo: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                worksheet.Cells[2, 1].Style.Font.Italic = true;
+                worksheet.Cells[2, 1].Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Left;
+
+                worksheet.Cells[3, 1].Value = "Tháng";
+                worksheet.Cells[3, 2].Value = "Doanh thu (VND)";
+                worksheet.Cells[3, 1, 3, 2].Style.Font.Bold = true;
+
+                for (int i = 0; i < monthlyStatistics.Count; i++)
+                {
+                    var statistic = monthlyStatistics[i];
+                    worksheet.Cells[i + 4, 1].Value = statistic.Month;
+                    worksheet.Cells[i + 4, 2].Value = statistic.TotalAmount;
+                    worksheet.Cells[i + 4, 2, i + 4, 3].Merge = true;
+
+                }
+                worksheet.Cells[monthlyStatistics.Count + 4, 1].Value = "Tổng";
+                worksheet.Cells[monthlyStatistics.Count+4, 1].Style.Font.Bold = true;
+                worksheet.Cells[monthlyStatistics.Count + 4, 2].Value = totalAmountForYear;
+                worksheet.Cells[monthlyStatistics.Count + 4, 2, monthlyStatistics.Count + 4, 3].Merge = true;
+
+                var fileContents = package.GetAsByteArray();
+
+                // Trả về file Excel cho người dùng
+                return File(fileContents, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", $"DoanhThu_{year}.xlsx");
+            }
+
+        }
     }
 }

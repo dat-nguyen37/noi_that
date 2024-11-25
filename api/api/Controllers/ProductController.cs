@@ -3,6 +3,7 @@ using api.Dto;
 using api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 using System.Drawing;
 
 namespace api.Controllers
@@ -230,7 +231,7 @@ namespace api.Controllers
             var products = await _context.products
                 .Include(c => c.Comments)
                 .OrderByDescending(p => p.Sell)
-                .Take(8)
+                .Take(4)
                 .ToListAsync();
             var result = products.Select(product => new
             {
@@ -377,5 +378,6 @@ namespace api.Controllers
                 TotalPages=totalPages,
             });
         }
-    }
+        
+        }
 }

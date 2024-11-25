@@ -49,16 +49,30 @@
                             <VueIcon type="mdi" :path="mdiViewHeadline" size="40" class=" hover:cursor-pointer"/>
                         </div>
                     </div>   
+                    <div class="flex items-center gap-5">
+                        <div class="flex items-center gap-2 px-2 cursor-pointer relative group">
+                        <VueIcon type="mdi" :path="mdiBell"/>
+                        <div class="absolute flex justify-center items-center top-0 right-2  w-4 h-4 bg-yellow-500 rounded-full"><span>{{ notifications.length }}</span></div>
+                        <div v-if="notifications.length>0" class="absolute hidden group-hover:block top-10 right-5 text-sm z-20 w-40 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
+                            <ul class="">
+                                <li v-for="(item,index) in notifications" :key="index" class="border-b p-2"><a href="/">{{item.message}}</a></li>
+                            </ul>
+                        </div>
+                        <div v-else class="absolute hidden group-hover:block top-10 right-5 text-sm z-20 p-2 min-h-10 w-40 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
+                            <p>Không có thông báo nào.</p>
+                        </div>
+                    </div> 
                     <div class="flex items-center gap-2 px-2 cursor-pointer relative group">
                         <img :src="$store.state.user.imageUrl || 'data:image/jpeg;base64,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'" class="w-8 h-8 rounded-full" alt="">
                         <VueIcon type="mdi" :path="mdiChevronDown"/>
-                        <div class="absolute hidden group-hover:block top-10 right-5 text-sm z-20 w-24 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
+                        <div class="absolute hidden group-hover:block top-8 right-5 text-sm z-20 w-24 bg-white text-center shadow-[0px_0px_2px_2px_rgba(0,0,0,0.3)]">
                             <ul class="">
                                 <li class="border-b p-2"><a href="/">Đến website</a></li>
                                 <li  class="border-b p-2 cursor-pointer">Đăng xuất</li>
                             </ul>
                         </div>
-                    </div>                 
+                    </div> 
+                    </div>                
                 </div>
                 <div class="p-5 flex flex-col gap-2 bg-gray-100 min-h-[calc(100vh-40px)]">
                     <router-view ></router-view>
@@ -69,18 +83,19 @@
 </template>
 
 <script>
-import {  mdiChevronDown,mdiChevronLeft,mdiViewHeadline,mdiLogout,mdiShoppingOutline,mdiTicketPercentOutline,mdiViewDashboard,mdiFinance,mdiImageArea, mdiAccount,mdiPackageVariantClosed,mdiLinkVariant } from '@mdi/js';
-
+import {  mdiChevronDown,mdiChevronLeft,mdiViewHeadline,mdiBell,mdiLogout,mdiShoppingOutline,mdiTicketPercentOutline,mdiViewDashboard,mdiFinance,mdiImageArea, mdiAccount,mdiPackageVariantClosed,mdiLinkVariant  } from '@mdi/js';
+import * as signalR from '@microsoft/signalr';
 export default {
     name:'AdminView',
     data(){
         return{
+            notifications: [],
             isSidebarVisible:false,
             userCount:0,
             productCount:0,
             totalCount:0,
             orderCount:0,
-            mdiViewHeadline,mdiChevronDown,mdiChevronLeft,mdiLogout,mdiShoppingOutline,mdiTicketPercentOutline,mdiImageArea,mdiViewDashboard,mdiFinance,mdiAccount,mdiPackageVariantClosed,mdiLinkVariant
+            mdiViewHeadline,mdiChevronDown,mdiChevronLeft,mdiLogout,mdiShoppingOutline,mdiBell ,mdiTicketPercentOutline,mdiImageArea,mdiViewDashboard,mdiFinance,mdiAccount,mdiPackageVariantClosed,mdiLinkVariant
         }
     },
     methods:{
@@ -90,7 +105,15 @@ export default {
         
     },
     mounted(){
+        const connection = new signalR.HubConnectionBuilder()
+      .withUrl("https://localhost:44322/notificationHub")
+      .build();
 
+    connection.on("ReceiveNotification", (notification) => {
+      this.notifications.push(notification);
+    });
+
+    connection.start().catch(err => console.error(err));
     }
 }
 </script>

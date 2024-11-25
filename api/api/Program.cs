@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
@@ -27,7 +28,12 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<AppDbContext>(options=>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IVnPayService, VnPayService>();// C?u h�nh jwt
+builder.Services.AddSignalR();
+
+
+builder.Services.AddScoped<IVnPayService, VnPayService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
+
 
 
 builder.Services.AddAuthentication(options =>
@@ -73,8 +79,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
+app.MapHub<NotificationHub>("/notificationHub");
 
 app.UseRouting();
 app.UseCors("AllowSpecificOrigin");
